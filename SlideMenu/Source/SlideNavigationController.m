@@ -710,15 +710,23 @@ static SlideNavigationController *singletonInstance;
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-	if (self.panGestureSideOffset == 0)
-		return YES;
-	
-	CGPoint pointInView = [touch locationInView:self.view];
-	CGFloat horizontalSize = [self horizontalSize];
-	
-	return (pointInView.x <= self.panGestureSideOffset || pointInView.x >= horizontalSize - self.panGestureSideOffset)
-		? YES
-		: NO;
+    CGPoint pointInView = [touch locationInView:self.view];
+    
+    if ( !CGRectEqualToRect(self.panGestureSideRect, CGRectZero) ) {
+        return CGRectContainsPoint(self.panGestureSideRect, pointInView);
+    }
+    
+    else if (self.panGestureSideOffset != 0) {
+        CGFloat horizontalSize = [self horizontalSize];
+        
+        return (pointInView.x <= self.panGestureSideOffset || pointInView.x >= horizontalSize - self.panGestureSideOffset)
+        ? YES
+        : NO;
+    }
+    
+    else {
+        return YES;
+    }
 }
 
 - (void)panDetected:(UIPanGestureRecognizer *)aPanRecognizer
