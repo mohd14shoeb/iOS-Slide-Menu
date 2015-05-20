@@ -124,6 +124,7 @@ static SlideNavigationController *singletonInstance;
 	self.landscapeSlideOffset = MENU_DEFAULT_SLIDE_OFFSET;
 	self.portraitSlideOffset = MENU_DEFAULT_SLIDE_OFFSET;
 	self.panGestureSideOffset = 0;
+    self.panGestureSideRect = CGRectZero;
 	self.avoidSwitchingToSameClassViewController = YES;
 	self.enableShadow = YES;
 	self.enableSwipeGesture = YES;

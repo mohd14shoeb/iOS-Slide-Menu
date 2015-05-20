@@ -58,6 +58,7 @@ extern NSString  *const SlideNavigationControllerDidReveal;
 @property (nonatomic, assign) CGFloat portraitSlideOffset;
 @property (nonatomic, assign) CGFloat landscapeSlideOffset;
 @property (nonatomic, assign) CGFloat panGestureSideOffset;
+@property (nonatomic, assign) CGRect panGestureSideRect;
 @property (nonatomic, assign) CGFloat menuRevealAnimationDuration;
 @property (nonatomic, assign) UIViewAnimationOptions menuRevealAnimationOption;
 @property (nonatomic, strong) id <SlideNavigationContorllerAnimator> menuRevealAnimator;
