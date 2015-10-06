@@ -50,7 +50,7 @@ NSString  *const SlideNavigationControllerDidReveal = @"SlideNavigationControlle
 #define MENU_SLIDE_ANIMATION_DURATION .3
 #define MENU_SLIDE_ANIMATION_OPTION UIViewAnimationOptionCurveEaseOut
 #define MENU_QUICK_SLIDE_ANIMATION_DURATION .18
-#define MENU_IMAGE @"menu-button"
+#define MENU_DEFAULT_MENU_BUTTON_TITLE @"Menu"
 #define MENU_SHADOW_RADIUS 10
 #define MENU_SHADOW_OPACITY 1
 #define MENU_DEFAULT_SLIDE_OFFSET 60
@@ -446,8 +446,13 @@ static SlideNavigationController *singletonInstance;
 	}
 	else
 	{
-		UIImage *image = [UIImage imageNamed:MENU_IMAGE];
-        return [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:selector];
+        UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button setTitle:MENU_DEFAULT_MENU_BUTTON_TITLE forState:UIControlStateNormal];
+        [button setTitle:MENU_DEFAULT_MENU_BUTTON_TITLE forState:UIControlStateHighlighted];
+        [button sizeToFit];
+        [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem*barButtonItem  = [[UIBarButtonItem alloc] initWithCustomView:button];
+        return barButtonItem;
 	}
 }
 
